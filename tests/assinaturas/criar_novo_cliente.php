@@ -42,10 +42,10 @@
 		);
 	
 	$assinatura = $moip->subscriptions
-						->setCode($codigo_assinatura)
-						->setAmount("4400")
-						->setPlan($codigo_plano)
-						->setCustomer($cliente)
-						->create();
+			->setCode($codigo_assinatura)
+			->setAmount("4400")
+			->setPlan($codigo_plano)
+			->setCustomer($cliente)
+			->create();
 
 	MoipHelper::trace($assinatura);

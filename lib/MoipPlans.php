@@ -79,18 +79,7 @@
 			$this->client->post($this->getBaseUrl(), $this->getParameters());
 			return $this->resetParameters()->client->response();
 		}
-
-		/*public function update($code=''){
-			if(!empty($code)) $this->setCode($code);
-			$this->client->put($this->getBaseUrl().$this->getCode(), $this->getParameters());
-			return $this->resetParameters()->client->response();
-		}*/
-
-		/*public function get($code=''){
-			if(!empty($code)) $this->setCode($code);
-			return $this->client->get($this->getBaseUrl().$this->getCode());
-		}*/
-		
+	
 		public function activate($code=''){
 			return $this->toggleStatus(true, $code);
 		}

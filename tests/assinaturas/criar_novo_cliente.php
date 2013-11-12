@@ -4,7 +4,7 @@
 	
 	$codigo_assinatura = 'codigo-assinatura';
 	$codigo_plano      = 'codigo-plano';
-	$codigo_cliente    = 'codigo-cliente-existente';
+	$codigo_cliente    = 'codigo-cliente';
 
 	$cliente = $moip->customers
 		->setIdentification(

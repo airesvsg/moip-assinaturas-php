@@ -25,7 +25,7 @@
                 $environment = isset($config['sandbox']) ? $config['sandbox'] : false;
                 $this->setEnvironment($environment);
                 $notification_token = isset($config['notification_token']) ? $config['notification_token'] : false;
-                $this->setNotificationToken($notification_token);
+                if($notification_token) $this->setNotificationToken($notification_token);
                 self::$CONFIG = $config;
             }
         }

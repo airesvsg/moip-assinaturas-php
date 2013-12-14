@@ -41,7 +41,7 @@
         }
 
 		public function setEnvironment($sandbox=false){
-			$this->baseUrl = 'https://'.($sandbox?'sandbox.':'').'moip.com.br/assinaturas/v1/';
+			$this->baseUrl = 'https://'.($sandbox?'sandbox':'api').'.moip.com.br/assinaturas/v1/';
 			return $this;
 		}
 

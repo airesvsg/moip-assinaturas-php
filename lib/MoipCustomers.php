@@ -47,7 +47,6 @@
 		}
 
 		public function create($new_vault=false){
-			MoipHelper::trace($this->getParameters(),1);
 			$this->setNewVault($new_vault)
 				->client->post($this->getBaseUrl().("?new_vault={$this->new_vault}"), $this->getParameters());
 			return $this->resetParameters()->client->response();

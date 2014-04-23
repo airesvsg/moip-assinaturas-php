@@ -12,7 +12,7 @@
 			$headers    = getallheaders();
 			$this->data = false;
 			if(MoipHelper::isArray($headers) && array_key_exists('Authorization', $headers) && $obj->getNotificationToken() === $headers['Authorization']){
-				$this->data = file_get_contents('http://input');
+				$this->data = file_get_contents('php://input');
 			}
 		}
 

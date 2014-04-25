@@ -7,17 +7,27 @@
 	class MoipWebhooks {
 
 		private $data;
+		private $obj;
+		private $authorized;
 
 		public function __construct($obj){
-			$headers    = getallheaders();
-			$this->data = false;
-			if(MoipHelper::isArray($headers) && array_key_exists('Authorization', $headers) && $obj->getNotificationToken() === $headers['Authorization']){
-				$this->data = file_get_contents('php://input');
+			$this->obj = $obj;
+			$this->authorized = false;
+		}
+		
+		public function authorized(){
+			$headers = MoipHelper::getAllHeaders();
+			$this->authorized = false;
+			if(MoipHelper::isArray($headers) && array_key_exists('Authorization', $headers) && $this->obj->getNotificationToken() === $headers['Authorization']){
+				$this->authorized = true;
 			}
+			return $this->authorized;
 		}
 
 		public function get($array=false){
-			$this->data = json_decode($this->data, $array) ;
+			if(!$this->authorized())
+				return false;
+			$this->data = json_decode(file_get_contents('php://input'), $array);
 			if(!empty($this->data)){
 				$event = explode('.', ($array ? $this->data['event'] : $this->data->event));
 				if($array){
@@ -33,9 +43,8 @@
 		}
 
 		public function __get($attr){
-			if($this->data){
+			if($this->data)
 				return is_array($this->data) ? $this->data[$attr] : $this->data->{$attr};
-			}
 		}
 
 	}

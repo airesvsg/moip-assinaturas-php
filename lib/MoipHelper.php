@@ -15,7 +15,7 @@
 		}
 
 		public static function parseInt($num){
-			return preg_replace('/[^0-9]+/', '', $num);
+			return (int) preg_replace('/[^0-9]+/', '', $num);
 		}
 
 		public static function trace($obj,$exit=false){
@@ -28,6 +28,20 @@
 			}
 			echo '</pre>';
 			if($exit) exit;
+		}
+		
+		public static function getAllHeaders(){
+			if(function_exists('getallheaders')){
+				return getallheaders();
+			}else{
+				$headers = null;
+   				foreach((array) $_SERVER as $name => $value){ 
+					if(substr($name, 0, 5) == 'HTTP_'){ 
+						$headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+					}
+				}
+				return $headers;
+    			}
 		}
 
 	}

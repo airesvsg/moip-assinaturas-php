@@ -3,13 +3,21 @@
 	//http://moiplabs.github.io/assinaturas-docs/webhooks.html
 
 	require_once(dirname(__FILE__).'/../inc/moip.php');
+	
+	MoipLogger::open('webhooks.log');
 
 	if(!$moip->webhooks->get()){
+		echo nl2br(MoipLogger::read());
 		exit;
 	}else{
-		//$moip->webhooks->date;
-		//$moip->webhooks->env;
-		//$moip->webhooks->resource;
+		
+		$log  = "Property: {$moip->webhooks->property}" . "\n";
+		$log .= "Date: {$moip->webhooks->date}" . "\n";
+		$log .= "Env: {$moip->webhooks->env}" . "\n";
+		$log .= "Resource: " . serialize($moip->webhooks->resource) . "\n";
+		
+		MoipLogger::write($log);
+		
 		switch($moip->webhooks->property){
 			case 'plans':
 				switch($moip->webhooks->event){

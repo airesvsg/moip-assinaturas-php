@@ -22,7 +22,7 @@
             self::$CONFIG = array();
             if(MoipHelper::isArray($config)){
                 $this->setCredential($config);
-                $environment = isset($config['sandbox']) ? $config['sandbox'] : false;
+                $environment = isset($config['sandbox']) && $config['sandbox'] ? $config['sandbox'] : false;
                 $this->setEnvironment($environment);
                 $notification_token = isset($config['notification_token']) ? $config['notification_token'] : false;
                 if($notification_token) $this->setNotificationToken($notification_token);

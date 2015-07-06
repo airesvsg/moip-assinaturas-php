@@ -48,12 +48,13 @@
 			return $this;
 		}
 
-		public function setTrial($days, $enabled=true){
+		public function setTrial($days, $enabled=true, $hold_setup_fee=true){
 			$this->setParameters(
 				array(
 					'trial' => array(
-						'days'    => $days,
-						'enabled' => $enabled ? true : false
+						'days'           => $days,
+						'enabled'        => $enabled ? true : false,
+						'hold_setup_fee' => $hold_setup_fee
 					)
 				)
 			);
